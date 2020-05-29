@@ -26,6 +26,18 @@
       <p>The Super Game Boy has 32 pre-made color palettes and allows for users to create their own palettes. These palettes can be saved and shared with a 12-digit number in the format of <code>XXXX-XXXX-XXXX</code>. Thanks to an existing <a href="https://gamefaqs.gamespot.com/snes/588731-super-game-boy/faqs/58647" target="_blank">guide by Alice Kojiro</a>, the 12-digit code can be broken down into RGB colors for each layer.</p>
       <p>This tool aims to allow users to pick colors for each layer, and have a Super Game Boy color code produced using the closest available colors that the Super Game Boy supports. Conversely, a Super Game Boy color code can be supplied and the corresponding layer colors displayed.</p>
       <h3>Palette Creator</h3>
+      <p>Presets:&nbsp;
+        <select id="presets">
+          <option value="bw-contrast" selected>Greys High Contrast by bgb</option>
+          <option value="lcd-green">LCD Green by bgb</option>
+          <option value="trans-pride">Trans Pride by negativecon</option>
+          <option value="nonbinary-pride">Nonbinary Pride by negativecon</option>
+          <option value="bi-pride">Bi Pride by negativecon</option>
+          <option value="ace-pride">Ace Pride by negativecon</option>
+          <option value="straight-ballin">Straight Ballin' by Belthic</option>
+        </select>&nbsp;
+        <button onclick="applyPreset()">Apply</button>
+      </p>
       <div class="img-wrap">
         <img id="image-one" class="preview" src="img/layer1.png">
         <img id="image-two" class="preview" src="img/layer2.png">

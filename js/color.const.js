@@ -654,3 +654,13 @@ const colorLookup = [
   {value: 543, colors: [0xFFF8F0, 0xEFF0D0, 0xE0E0D0, 0xD0D0CF]},
   {value: 927, colors: [0x3F3830, 0x2F3010, 0x202010, 0x10100F]},
 ];
+
+const presetColors = [
+  {value: "bw-contrast", code: "0501-7630-4243"},
+  {value: "lcd-green", code: "5341-5634-0912"},
+  {value: "trans-pride", code: "0500-7672-2243"},
+  {value: "nonbinary-pride", code: "1972-7805-0243"},
+  {value: "bi-pride", code: "1952-7872-2243"},
+  {value: "ace-pride", code: "0502-5837-0243"},
+  {value: "straight-ballin", code: "7287-1072-3243"}
+]

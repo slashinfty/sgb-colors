@@ -120,6 +120,13 @@ function codeToColor(sgb) {
   shareLink();
 }
 
+function applyPreset() {
+  let presetObj = presetColors.find(preset => preset.value === document.getElementById("presets").value);
+  let sgbCode = presetObj.code;
+  document.getElementById("sgb-code").value = sgbCode;
+  codeToColor(sgbCode);
+}
+
 function shareLink() {
   // show link to share
   let p = document.getElementById("share-link");
