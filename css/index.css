@@ -1,9 +1,3 @@
-@media screen and (min-width: 40em) {
-    .flex-item {
-        max-width: calc(25% - 1em);
-    }
-}
-
 .img-wrap {
     position: relative;
     height: 160px;
