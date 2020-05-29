@@ -1,17 +1,15 @@
-.flex-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+@media screen and (min-width: 40em) {
+    .flex-item {
+        max-width: calc(25% - 1em);
+    }
 }
 
-.flex-item {
-    max-width: calc(50% -  1em);
+.img-wrap {
+    position: relative;
+    height: 160px;
 }
 
 .preview {
     position: absolute;
-    right: 0;
-    bottom: 50%;
 }
 

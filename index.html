@@ -16,6 +16,7 @@
     <script src="js/jscolor.js"></script>
     <script src="js/nearestColor.js"></script>
     <script src="js/color.const.js"></script>
+    <script src="js/color.filter.js"></script>
     <script src="js/index.js"></script>
   </head>
   <body class="stackedit">
@@ -25,27 +26,23 @@
       <p>The Super Game Boy has 32 pre-made color palettes and allows for users to create their own palettes. These palettes can be saved and shared with a 12-digit number in the format of <code>XXXX-XXXX-XXXX</code>. Thanks to an existing <a href="https://gamefaqs.gamespot.com/snes/588731-super-game-boy/faqs/58647" target="_blank">guide by Alice Kojiro</a>, the 12-digit code can be broken down into RGB colors for each layer.</p>
       <p>This tool aims to allow users to pick colors for each layer, and have a Super Game Boy color code produced using the closest available colors that the Super Game Boy supports. Conversely, a Super Game Boy color code can be supplied and the corresponding layer colors displayed.</p>
       <h3>Palette Creator</h3>
-      <div class="flex-wrapper">
-        <div class="flex-item">
-          <p>Layer 1: <input id="layer-one" class="jscolor" value="fff8ff"></p>
-          <p>Layer 2: <input id="layer-two" class="jscolor" value="b0b0b0"></p>
-          <p>Layer 3: <input id="layer-three" class="jscolor" value="606060"></p>
-          <p>Layer 4: <input id="layer-four" class="jscolor" value="000000"></p>
-          <p><button onclick="colorToCode()">Convert colors to code</button></p>
-          <p><button onclick="codeToColor()">Convert code to colors</button></p>
-          <p>SGB Code: <input id="sgb-code" type="text" value="0501-7630-4243"></p>
-        </div>
-        <div class="flex-item">
-          <div class="img-wrap">
-            <img id="image-one" class="preview" src="img/layer1.png">
-            <img id="image-two" class="preview" src="img/layer2.png">
-            <img id="image-three" class="preview" src="img/layer3.png">
-            <img id="image-four" class="preview" src="img/layer4.png">
-          </div>
-        </div>
+      <div class="img-wrap">
+        <img id="image-one" class="preview" src="img/layer1.png">
+        <img id="image-two" class="preview" src="img/layer2.png">
+        <img id="image-three" class="preview" src="img/layer3.png">
+        <img id="image-four" class="preview" src="img/layer4.png">
       </div>
+      <p>Layer 1: <input id="layer-one" class="jscolor" value="fff8ff"></p>
+      <p>Layer 2: <input id="layer-two" class="jscolor" value="b0b0b0"></p>
+      <p>Layer 3: <input id="layer-three" class="jscolor" value="606060"></p>
+      <p>Layer 4: <input id="layer-four" class="jscolor" value="000000"></p>
+      <p><button onclick="colorToCodeBtn()">Convert colors to code</button></p>
+      <p><button onclick="codeToColorBtn()">Convert code to colors</button></p>
+      <p>SGB Code: <input id="sgb-code" type="text" value="0501-7630-4243"></p>
+      <p id="share-link" style="display: none;"></p>
       <h3>Source Code</h3>
-      <p>Did you know there are 53,654,497,280 unique palettes? Source code for this tool is available on <a href="https://github.com/slashinfty/sgb-colors">GitHub</a>.</p>
+      <p>Did you know there are 53,654,497,280 unique palettes? If you have a custom palette you'd like to share, which may get added to a preset option, <a href="https://forms.gle/QxqJ2mY4HnjrLEej8" target="_blank">submit it here</a>.</p>
+      <p>Source code for this tool is available on <a href="https://github.com/slashinfty/sgb-colors">GitHub</a>.</p>
     </div>
   </body>
 </html>
