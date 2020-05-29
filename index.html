@@ -3,12 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Game Boy Color Picker</title>
+    <title>SGB Palette Creator</title>
     <link rel="stylesheet" href="https://stackedit.io/style.css">
-    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jscolor.js"></script>
+    <script src="js/nearestColor.js"></script>
     <script src="js/color.const.js"></script>
+    <script src="js/index.js"></script>
   </head>
-  <body>
-
+  <body class="stackedit">
+    <div class="stackedit__html">
+      <h1 id="sgb-colors">Super Game Boy Palette Creator</h1>
+      <h3>About</h3>
+      <p>The Super Game Boy has 32 pre-made color palettes and allows for users to create their own palettes. These palettes can be saved and shared with a 12-digit number in the format of <code>XXXX-XXXX-XXXX</code>. Thanks to an existing <a href="https://gamefaqs.gamespot.com/snes/588731-super-game-boy/faqs/58647" target="_blank">guide by Alice Kojiro</a>, the 12-digit code can be broken down into RGB colors for each layer.</p>
+      <p>This tool aims to allow users to pick colors for each layer, and have a Super Game Boy color code produced using the closest available colors that the Super Game Boy supports. Conversely, a Super Game Boy color code can be supplied and the corresponding layer colors displayed.</p>
+      <h3>Palette Creator</h3>
+      <div class="flex-wrapper">
+        <div class="flex-item">
+          <p>Layer 1: <input id="layer-one" class="jscolor" value="fff8ff"></p>
+          <p>Layer 2: <input id="layer-two" class="jscolor" value="b0b0b0"></p>
+          <p>Layer 3: <input id="layer-three" class="jscolor" value="606060"></p>
+          <p>Layer 4: <input id="layer-four" class="jscolor" value="000000"></p>
+          <p><button>Convert colors to code</button></p>
+          <p><button>Convert code to colors</button></p>
+          <p>SGB Code: <input id="sgb-code" type="text" value="0501-7630-4243"></p>
+        </div>
+        <div class="flex-item">
+          <div class="img-wrap">
+            <img id="image-one" class="preview" src="img/layer1.png">
+            <img id="image-two" class="preview" src="img/layer2.png">
+            <img id="image-three" class="preview" src="img/layer3.png">
+            <img id="image-four" class="preview" src="img/layer4.png">
+          </div>
+        </div>
+      </div>
+      <h3>Source Code</h3>
+      <p>Did you know there are 53,654,497,280 unique palettes? Source code for this tool is available on <a href="https://github.com/slashinfty/sgb-colors">GitHub</a>.</p>
+    </div>
   </body>
 </html>

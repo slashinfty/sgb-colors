@@ -1,0 +1,17 @@
+.flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.flex-item {
+    max-width: calc(50% -  1em);
+}
+
+.preview {
+    position: absolute;
+    right: 0;
+    bottom: 50%;
+}
+

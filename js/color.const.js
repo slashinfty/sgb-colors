@@ -1,3 +1,8 @@
+var color1 = [];
+var color2 = [];
+var color3 = [];
+var color4 = [];
+
 const colorLookup = [
   {value: 0, color: 0xFFC0C0},
   {value: 1, color: 0xFFD0FF},
