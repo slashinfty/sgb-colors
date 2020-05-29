@@ -123,6 +123,6 @@ function codeToColor(sgb) {
 function shareLink() {
   // show link to share
   let p = document.getElementById("share-link");
-  p.innerText = "Share your color palette: https://mattbraddock/sgb-colors/?sgb=" + document.getElementById("sgb-code").value;
+  p.innerText = "Share your color palette: https://mattbraddock.com/sgb-colors/?sgb=" + document.getElementById("sgb-code").value;
   p.style.display = "block";
 }
