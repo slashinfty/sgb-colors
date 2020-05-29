@@ -3,9 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>SGB Palette Creator</title>
+    <meta name="author" content="Matt Braddock">
+    <meta name="description" content="Create Super Game Boy color palettes from hex color values">
+    <meta name="keywords" content="sgb, sgb2, super game boy, color palettes">
+    <link rel='icon' href='img/favicon.ico' type='image/x-icon'/ >
+
     <link rel="stylesheet" href="https://stackedit.io/style.css">
     <link rel="stylesheet" href="css/index.css">
+
     <script src="js/jscolor.js"></script>
     <script src="js/nearestColor.js"></script>
     <script src="js/color.const.js"></script>
@@ -24,8 +31,8 @@
           <p>Layer 2: <input id="layer-two" class="jscolor" value="b0b0b0"></p>
           <p>Layer 3: <input id="layer-three" class="jscolor" value="606060"></p>
           <p>Layer 4: <input id="layer-four" class="jscolor" value="000000"></p>
-          <p><button>Convert colors to code</button></p>
-          <p><button>Convert code to colors</button></p>
+          <p><button onclick="colorToCode()">Convert colors to code</button></p>
+          <p><button onclick="codeToColor()">Convert code to colors</button></p>
           <p>SGB Code: <input id="sgb-code" type="text" value="0501-7630-4243"></p>
         </div>
         <div class="flex-item">

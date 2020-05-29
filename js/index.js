@@ -1,22 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // create arrays of unique colors for each layer
+  // the codes are hex numbers, but we need strings of #dddddd
   colorLookup.forEach(code => {
     if (code.hasOwnProperty('color')) {
-      let c = '#' + ("00000" + code.color.toString(16)).substr(-6);
+      // some codes are a single color
+      let c = '#' + ("00000" + code.color.toString(16)).substr(-6); // leading zeros trick
       if (!color1.includes(c)) color1.push(c);
       if (!color2.includes(c)) color2.push(c);
       if (!color3.includes(c)) color3.push(c);
       if (!color4.includes(c)) color4.push(c);
     } else {
+      // some codes vary by layer
       if (!color1.includes('#' + ("00000" + code.colors[0].toString(16)).substr(-6))) color1.push('#' + ("00000" + code.colors[0].toString(16)).substr(-6));
       if (!color2.includes('#' + ("00000" + code.colors[1].toString(16)).substr(-6))) color2.push('#' + ("00000" + code.colors[1].toString(16)).substr(-6));
       if (!color3.includes('#' + ("00000" + code.colors[2].toString(16)).substr(-6))) color3.push('#' + ("00000" + code.colors[2].toString(16)).substr(-6));
       if (!color4.includes('#' + ("00000" + code.colors[3].toString(16)).substr(-6))) color4.push('#' + ("00000" + code.colors[3].toString(16)).substr(-6));
     }
   });
+  
+  // set the preview image colors to default colors
+  let imageEls = document.getElementsByClassName("preview");
+  let colorEls = document.getElementsByClassName("jscolor");
+  for (let i = 0; i < imageEls.length; i++) imageEls[i].style.filter = filterColor(colorEls[i].jscolor.rgb);
+
+  // set up nearest color functions
+  nearestColor1 = nearestColor.from(color1);
+  nearestColor2 = nearestColor.from(color2);
+  nearestColor3 = nearestColor.from(color3);
+  nearestColor4 = nearestColor.from(color4);
 });
 
 function deadZone(code) {
+  // some codes are the same as code: 704
   let deadRanges = [53, 63, 117, 127, 181, 191, 245, 255, 309, 319, 373, 383, 437, 447, 501, 511, 545, 575, 609, 639, 673, 703, 736, 767, 801, 831, 865, 895, 929, 959, 992, 999];
+  // this array is lower bound, upper bound, lower bound, upper bound, etc
   for (let i = 0; i < deadRanges.length; i += 2) {
     if (deadRanges[i] <= code && code <= deadRanges[i + 1]) return 704;
   }
@@ -24,8 +41,9 @@ function deadZone(code) {
 }
 
 function duplicateCodes(code) {
+  // some codes with layer-specific colors are the same as other codes
   let patternDuplicates = [544, 608, 672, 800, 864, 928];
-  if (960 <= code && code <= 991) return code - 256;
+  if (960 <= code && code <= 991) return code - 256; // the range 960-991 is the same as the range 704-735
   else if (patternDuplicates.includes(code)) return code - 32;
   else return code;
 }
@@ -234,43 +252,46 @@ class Solver { //code from https://stackoverflow.com/questions/42966641/how-to-t
 
   css(filters) {
     function fmt(idx, multiplier = 1) { return Math.round(filters[idx] * multiplier); }
-    return `filter: invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%);`;
+    return `invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%)`;
   }
 }
-/*
-$("button.execute").click(() => {
-  let rgb = $("input.target").val().split(",");
-  if (rgb.length !== 3) { alert("Invalid format!"); return; }
 
-  let color = new Color(rgb[0], rgb[1], rgb[2]);
+function filterColor(rgbArray) {
+  let color = new Color(rgbArray[0], rgbArray[1], rgbArray[2]);
   let solver = new Solver(color);
-  let result = solver.solve();
+  let result;
+  do {
+    result = solver.solve();
+  } while (result.loss > 5);
+  return result.filter;
+}
 
-  let lossMsg;
-  if (result.loss < 1) {
-      lossMsg = "This is a perfect result.";
-  } else if (result.loss < 5) {
-      lossMsg = "The is close enough.";
-  } else if(result.loss < 15) {
-      lossMsg = "The color is somewhat off. Consider running it again.";
-  } else {
-      lossMsg = "The color is extremely off. Run it again!";
+function colorToCode() {
+  let sgbCode = '';
+  let nearColors = [];
+  let colorEls = document.getElementsByClassName("jscolor");
+  for (let i = 0; i < colorEls.length; i++) {
+    // get color from input
+    let inputColor = colorEls[i].jscolor.toHEXString().toLowerCase();
+    // get nearest color
+    let nearColor = window["nearestColor" + (i + 1).toString()](inputColor);
+    colorEls[i].jscolor.fromString(nearColor);
+    nearColors.push(nearColor);
+    // find code for color
+    let codeObj = colorLookup.find(clr => clr.hasOwnProperty("color") ? nearColor === '#' + ("00000" + clr.color.toString(16)).substr(-6) : clr.colors.indexOf(parseInt(nearColor.substr(1),16)) > -1);
+    let code = ("00" + codeObj.value.toString()).substr(-3);
+    sgbCode += code;
   }
-
-  $(".realPixel").css("background-color", color.toString());
-  $(".filterPixel").attr("style", result.filter);
-  $(".filterDetail").text(result.filter);
-  $(".lossDetail").html(`Loss: ${result.loss.toFixed(1)}. <b>${lossMsg}</b>`);
-});
-*/
-
-// there are 53,654,497,280 combinations
-// https://github.com/dtao/nearest-color
-// http://jscolor.com/download/
-// https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
-
-// create color lists for "nearest color"
-// page elements
-// create preview pane
-// break down sgb code
-// create sgb code
+  // format code and set
+  let postCode = sgbCode.substr(0, 4) + "-" + sgbCode.substr(4, 4) + "-" + sgbCode.substr(8, 4);
+  document.getElementById("sgb-code").value = postCode;
+  //color preview image
+  let imageEls = document.getElementsByClassName("preview");
+  for (let i = 0; i < imageEls.length; i++) {
+    let hexToRGB = hex => {
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
+    }
+    imageEls[i].style.filter = filterColor(hexToRGB(nearColors[i]));
+  }
+}

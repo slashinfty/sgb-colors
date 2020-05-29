@@ -2,6 +2,7 @@ var color1 = [];
 var color2 = [];
 var color3 = [];
 var color4 = [];
+var nearestColor1, nearestColor2, nearestColor3, nearestColor4;
 
 const colorLookup = [
   {value: 0, color: 0xFFC0C0},
