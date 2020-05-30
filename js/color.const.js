@@ -662,5 +662,6 @@ const presetColors = [
   {value: "nonbinary-pride", code: "1972-7805-0243"},
   {value: "bi-pride", code: "1952-7872-2243"},
   {value: "ace-pride", code: "0502-5837-0243"},
+  {value: "miami-vice", code: "0492-6479-2243"},
   {value: "straight-ballin", code: "7287-1072-3243"}
 ]
