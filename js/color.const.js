@@ -664,5 +664,6 @@ const presetColors = [
   {value: "ace-pride", code: "0502-5837-0243"},
   {value: "miami-vice", code: "0492-6479-2243"},
   {value: "straight-ballin", code: "7287-1072-3243"},
-  {value: "mellow", code: "0507-1134-0387"}
+  {value: "mellow", code: "0507-1134-0387"},
+  {value: "springtime", code: "0171-5626-7434"}
 ]

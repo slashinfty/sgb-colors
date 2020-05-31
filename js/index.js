@@ -84,7 +84,7 @@ function colorToCodeBtn() {
   // color preview image
   let imageEls = document.getElementsByClassName("preview");
   let hexToRGB = hex => {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
   }
   for (let i = 0; i < imageEls.length; i++) imageEls[i].style.filter = filterColor(hexToRGB(nearColors[i]));
@@ -105,7 +105,7 @@ function codeToColor(sgb) {
   let colorEls = document.getElementsByClassName("jscolor");
   let imageEls = document.getElementsByClassName("preview");
   let hexToRGB = hex => {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
   }
   sgbComponents.forEach((component, i) => {
