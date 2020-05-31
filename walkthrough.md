@@ -110,7 +110,7 @@ for (let i = 0; i < colorEls.length; i++) {
   let codeObj = colorLookup.find(clr => clr.hasOwnProperty("color") ? nearColor === '#' + ("00000" + clr.color.toString(16)).substr(-6) : clr.colors.indexOf(parseInt(nearColor.substr(1),16)) > -1); // this ternary operator allows searching the colorLookup array in either color or colors
   let code = ("00" + codeObj.value.toString()).substr(-3);
   sgbCode += code;
-  }
+}
 ```
 
 One trick that is done a few times is `("00" + codeObj.value.toString()).substr(-3)`. This is adding leading zeros, then cutting down to the three digits at the end we care about (or 6 in terms of hexadecimal colors).
@@ -163,7 +163,7 @@ sgbComponents.forEach((component, i) => {
   colorEls[i].jscolor.fromString(clr);
   // color preview image
   imageEls[i].style.filter = filterColor(hexToRGB(clr));
-  });
+});
 ```
 
 There are two new functions here, `duplicateCodes` and `deadZone`. There are many codes with the same colors as other codes. Rather than add more to the data collection for `color.const.js`, some small functions took care of this, either returning the original code or the code it was a duplicate of.
