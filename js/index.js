@@ -127,6 +127,12 @@ function applyPreset() {
   codeToColor(sgbCode);
 }
 
+function randomPalette() {
+  const randomCode = ('0000' + Math.round(Math.random() * 1e4)).substr(-4) + '-' + ('0000' + Math.round(Math.random() * 1e4)).substr(-4) + '-' + ('0000' + Math.round(Math.random() * 1e4)).substr(-4);
+  document.getElementById("sgb-code").value = randomCode;
+  codeToColor(randomCode);
+}
+
 function shareLink() {
   // show link to share
   let p = document.getElementById("share-link");
